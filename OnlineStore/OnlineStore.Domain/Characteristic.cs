@@ -3,8 +3,9 @@
     public class Characteristic
     {
         public Guid Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string Value { get; set; } = null!;
         public Guid ProductId { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
+        public Product Product { get; set; } = null!;
     }
 }
