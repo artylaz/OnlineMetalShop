@@ -5,6 +5,7 @@ namespace OnlineStore.Domain
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
+        public DateTime CreationDate { get; set; }
         public bool IsHidden { get; set; }
 
         public Guid CategoryId { get; set; }
