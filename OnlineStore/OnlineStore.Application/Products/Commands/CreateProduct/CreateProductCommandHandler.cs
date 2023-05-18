@@ -13,20 +13,21 @@ namespace OnlineStore.Application.Products.Commands.CreateProduct
         public async Task<Guid> Handle(CreateProductCommand request,
             CancellationToken cancellationToken)
         {
+            var productId = Guid.NewGuid();
             var product = new Product
             {
-                Id = Guid.NewGuid(),
+                Id = productId,
                 CategoryId = request.CategoryId,
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 Description = request.Description,
                 Name = request.Name,
                 IsHidden = request.IsHidden
             };
-            
-            product.PriceChanges.Add(new PriceChange 
-            { 
-                NewPrice = request.Price, 
-                DatePriceChange = DateTime.Now 
+
+            product.PriceChanges.Add(new PriceChange
+            {
+                NewPrice = request.Price,
+                DatePriceChange = DateTime.UtcNow,
             });
 
             await dbContext.Products.AddAsync(product, cancellationToken);

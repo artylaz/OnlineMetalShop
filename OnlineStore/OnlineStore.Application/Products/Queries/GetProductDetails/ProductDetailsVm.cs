@@ -21,21 +21,7 @@ namespace OnlineStore.Application.Products.Queries.GetProductDetails
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Product, ProductDetailsVm>()
-                .ForMember(productVm => productVm.Id,
-                    opt => opt.MapFrom(product => product.Id))
-                .ForMember(productVm => productVm.Name,
-                    opt => opt.MapFrom(product => product.Name))
-                .ForMember(productVm => productVm.Description,
-                    opt => opt.MapFrom(product => product.Description))
-                .ForMember(productVm => productVm.CreationDate,
-                    opt => opt.MapFrom(product => product.CreationDate))
-                .ForMember(productVm => productVm.CategoryId,
-                    opt => opt.MapFrom(product => product.CategoryId))
-                .ForMember(productVm => productVm.IsHidden,
-                    opt => opt.MapFrom(product => product.IsHidden))
-                .ForMember(productVm => productVm.Price,
-                    opt => opt.MapFrom(product => product.PriceChanges.Max(pr => pr.NewPrice)));
+            profile.CreateMap<Product, ProductDetailsVm>();
         }
     }
 }
