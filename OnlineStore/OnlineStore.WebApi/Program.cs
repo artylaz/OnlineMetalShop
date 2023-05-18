@@ -2,6 +2,7 @@ using OnlineStore.Application;
 using OnlineStore.Application.Common.Mappings;
 using OnlineStore.Application.Interfaces;
 using OnlineStore.Persistence;
+using OnlineStore.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,10 +36,7 @@ using (var scope = app.Services.CreateScope())
         var context = serviceProvider.GetRequiredService<OnlineStoreDbContext>();
         DbInitializer.Initialize(context);
     }
-    catch (Exception exception)
-    {
-
-    }
+    catch { }
 }
 
 if (app.Environment.IsDevelopment())
@@ -47,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors();
