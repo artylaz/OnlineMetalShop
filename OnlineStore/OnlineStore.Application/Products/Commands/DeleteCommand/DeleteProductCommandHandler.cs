@@ -15,7 +15,7 @@ namespace OnlineStore.Application.Products.Commands.DeleteCommand
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
             var product = await dbContext.Products
-                .FindAsync(new object[] { request.Id }, cancellationToken);
+                .FindAsync(request.Id, cancellationToken);
 
             if (product == null)
                 throw new NotFoundException(nameof(Product), request.Id);

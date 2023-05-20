@@ -7,7 +7,7 @@ using OnlineStore.Application.Products.Queries.GetProductList;
 
 namespace OnlineStore.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ProductController : BaseController
     {
         [HttpGet("{id}")]
@@ -21,13 +21,10 @@ namespace OnlineStore.WebApi.Controllers
             return Ok(vm);
         }
 
-        [HttpGet("{categoryId}",Name = "GetAllByCategory")]
-        public async Task<ActionResult<ProductDetailsVm>> GetAllByCategory(Guid categoryId)
+        [HttpGet("{categotyId}")]
+        public async Task<ActionResult<ProductDetailsVm>> GetAllByCategory(Guid categotyId)
         {
-            var query = new GetProductListQuery
-            {
-                CategoryId = categoryId
-            };
+            var query = new GetProductListQuery { CategoryId = categotyId };
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
