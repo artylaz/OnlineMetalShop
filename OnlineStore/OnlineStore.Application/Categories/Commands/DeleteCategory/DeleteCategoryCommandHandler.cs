@@ -5,11 +5,11 @@ using OnlineStore.Domain;
 
 namespace OnlineStore.Application.Categories.Commands.DeleteCategory
 {
-    public class DeleteCategoryCommandHendler
+    public class DeleteCategoryCommandHandler
         : IRequestHandler<DeleteCategoryCommand>
     {
         private readonly IOnlineStoreDbContext dbContext;
-        public DeleteCategoryCommandHendler(IOnlineStoreDbContext dbContext)
+        public DeleteCategoryCommandHandler(IOnlineStoreDbContext dbContext)
             => this.dbContext = dbContext;
 
         public async Task Handle(DeleteCategoryCommand request,

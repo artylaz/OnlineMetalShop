@@ -13,7 +13,8 @@ namespace OnlineStore.Application.Categories.Queries.GetCategoryList
         private readonly IMapper mapper;
         public GetCategoryListQueryHandler(IOnlineStoreDbContext dbContext,
             IMapper mapper) => (this.dbContext, this.mapper) = (dbContext, mapper);
-        public async Task<CategoryListVm> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
+        public async Task<CategoryListVm> Handle(GetCategoryListQuery request, 
+            CancellationToken cancellationToken)
         {
             var categoryListVm = new CategoryListVm();
             if (request.CategoryId != null)
