@@ -33,7 +33,7 @@ namespace OnlineStore.Application.Products.Commands.UpdateProduct
                 product.PriceChanges.Add(new PriceChange
                 {
                     NewPrice = request.Price,
-                    DatePriceChange = DateTime.Now
+                    DatePriceChange = DateTime.UtcNow,
                 });
 
             await dbContext.SaveChangesAsync(cancellationToken);

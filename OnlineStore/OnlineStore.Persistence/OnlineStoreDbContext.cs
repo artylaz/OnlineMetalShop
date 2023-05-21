@@ -19,7 +19,7 @@ namespace OnlineStore.Persistence
         public DbSet<OrderItem> OrderItems { get; set; }
 
         public OnlineStoreDbContext(DbContextOptions<OnlineStoreDbContext> options)
-            : base(options) { }
+            : base(options) {}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CategoryConfiguration());
