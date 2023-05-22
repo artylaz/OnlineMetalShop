@@ -12,6 +12,9 @@ namespace OnlineStore.Tests.Common
         public static Guid ProductIdForDelete = Guid.NewGuid();
         public static Guid ProductIdForUpdate = Guid.NewGuid();
 
+        public static Guid CharacteristicIdForDelete = Guid.NewGuid();
+        public static Guid CharacteristicIdForUpdate = Guid.NewGuid();
+
         public static OnlineStoreDbContext Create()
         {
             var options = new DbContextOptionsBuilder<OnlineStoreDbContext>()
@@ -104,6 +107,29 @@ namespace OnlineStore.Tests.Common
                     {
                         new PriceChange{ NewPrice = 10010, DatePriceChange = DateTime.UtcNow}
                     }
+                });
+
+            context.Characteristics.AddRange(
+                new Characteristic
+                {
+                    Id = CharacteristicIdForDelete,
+                    Name = "Name1",
+                    Value = "Value1",
+                    ProductId = Guid.Parse("ce64e418-f507-465b-926e-09f77c764e47")
+                },
+                new Characteristic
+                {
+                    Id = CharacteristicIdForUpdate,
+                    Name = "Name2",
+                    Value = "Value2",
+                    ProductId = Guid.Parse("ce64e418-f507-465b-926e-09f77c764e47")
+                },
+                new Characteristic
+                {
+                    Id = Guid.Parse("968f605e-626f-46f2-a22f-8ac3e5068fe3"),
+                    Name = "Name3",
+                    Value = "Value3",
+                    ProductId = Guid.Parse("ce64e418-f507-465b-926e-09f77c764e47")
                 });
 
             context.SaveChanges();

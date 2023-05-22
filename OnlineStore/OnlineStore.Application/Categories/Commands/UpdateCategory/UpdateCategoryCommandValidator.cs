@@ -2,9 +2,9 @@
 
 namespace OnlineStore.Application.Categories.Commands.UpdateCategory
 {
-    public class UpdareCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
+    public class UpdateCategoryCommandValidator : AbstractValidator<UpdateCategoryCommand>
     {
-        public UpdareCategoryCommandValidator()
+        public UpdateCategoryCommandValidator()
         {
             RuleFor(createProductCommand =>
             createProductCommand.Id).NotEqual(Guid.Empty);

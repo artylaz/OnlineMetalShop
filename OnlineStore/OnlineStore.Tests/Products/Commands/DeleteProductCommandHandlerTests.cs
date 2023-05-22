@@ -20,8 +20,8 @@ namespace OnlineStore.Tests.Products.Commands
             }, CancellationToken.None);
 
             // Assert
-            Assert.Null(Context.Products.SingleOrDefault(note =>
-                note.Id == OnlineStoreContextFactory.ProductIdForDelete));
+            Assert.Null(Context.Products.SingleOrDefault(c =>
+                c.Id == OnlineStoreContextFactory.ProductIdForDelete));
         }
 
         [Fact]

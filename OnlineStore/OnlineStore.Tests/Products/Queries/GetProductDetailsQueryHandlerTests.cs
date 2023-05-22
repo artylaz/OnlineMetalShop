@@ -40,7 +40,7 @@ namespace OnlineStore.Tests.Products.Queries
             result.Price.ShouldBe(10200);
             result.Description.ShouldBe("Description3");
             result.Pictures.Count.ShouldBe(0);
-            result.Characteristics.Count.ShouldBe(0);
+            result.Characteristics.Count.ShouldBe(3);
             result.CreationDate.Day.ShouldBe(DateTime.Today.Day);
         }
     }
