@@ -1,0 +1,179 @@
+﻿<div class="mobile-header-section d-block d-lg-none">
+
+    <div class="mobile-header-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="mobile-header--left">
+                        <a href="" class="mobile-logo-link">
+                            <img src="~/images/logo/logo.png" alt="" class="mobile-logo-img">
+                        </a>
+                    </div>
+                    <div class="mobile-header--right">
+                        <a href="#mobile-menu-offcanvas" class="mobile-menu offcanvas-toggle">
+                            <span class="mobile-menu-dash"></span>
+                            <span class="mobile-menu-dash"></span>
+                            <span class="mobile-menu-dash"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<header class="header-section d-lg-block d-none">
+    <form id="yourFormId" method="post" asp-controller="Account" asp-action="Logout">
+        <div class="header-center">
+            <div class="container">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-3">
+
+                        <div class="header-logo">
+                            <a href="/Home/Index"><img src="~/images/logo/logo.png" alt=""></a>
+                        </div>
+                    </div>
+
+                    <div class="col-3 text-right" style="box-sizing: content-box; ">
+
+                        <ul class="header-action-icon">
+
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a href="/Account/Login">
+                                        <i class="icon-user"></i>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/Shopping/ShowBasket">
+                                        <i class="icon-shopping-cart"></i>
+                                        <span class="header-action-icon-item-count">@ViewData["AmountBasket"]</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    @if (User.IsInRole("user"))
+                                    {
+                                        <a href="/User/MyAccount" style="box-sizing: content-box; ">
+                                            @User.Claims.Last().Value
+                                        </a>
+                                    }
+                                    else if (User.IsInRole("admin"))
+                                    {
+                                        <a href="/Admin/AdminAccount" style="box-sizing: content-box; ">
+                                            @User.Claims.Last().Value
+                                        </a>
+                                    }
+                                    else if (User.IsInRole("superuser"))
+                                    {
+                                        <a href="/Admin/AdminAccount" style="box-sizing: content-box; ">
+                                            @User.Claims.Last().Value
+                                        </a>
+                                    }
+                                    else { }
+
+
+                                </li>
+                                <li>
+                                    <a href="#" id="yourLinkId">
+                                        <i class="icon-arrow-right-circle"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom sticky-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="main-menu">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="/Home/Index">Главная</a>
+                                    </li>
+                                    <li class="has-dropdown has-megaitem">
+                                        <a href="/Shopping/ShowProducts">
+                                            Купить <i class="fa fa-angle-down"></i>
+                                        </a>
+
+                                        <div class="mega-menu">
+                                            <h3 class="section-title">Металлопрокат</h3>
+                                            <div style="display:flex; flex-wrap: wrap; margin-top:20px;">
+                                                @*@foreach (var categoryVM in IndexMenuVM.Categorys)
+                                                {
+                                                    <select class="select-f mega-menu-inner menu_font" readonly name="CategoryId">
+                                                        <option class=" mega-menu-item">
+                                                            <a href="@Url.Action("ShowProducts","Shopping",categoryVM)"
+                                                           class="mega-menu-item-title">@categoryVM.Name</a>
+                                                        </option>
+                                                        @foreach (var item in categoryVM.CategoryHeaders)
+                                                        {
+                                                            <option class="select-option-f mega-menu-item">
+                                                                <a href="@Url.Action("ShowProducts","Shopping",item)" class="mega-menu-item-title">@item.Name</a>
+                                                            </option>
+                                                        }
+                                                    </select>
+                                                }*@
+
+                                                @foreach (var categoryVM in IndexMenuVM.Categorys)
+                                                {
+                                                    <div class="btn-group ">
+                                                        <button class="dropdown-toggle select-f menu_font" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            @categoryVM.Name
+                                                        </button>
+                                                        <ul class="dropdown-menu mega-menu-sub menu_font list">
+                                                            <li class="mega-menu-item option">
+                                                                <a href="@Url.Action("ShowProducts","Shopping",categoryVM)"
+                                                               class="mega-menu-item-title menu_font">@categoryVM.Name</a>
+                                                            </li>
+                                                            @foreach (var item in categoryVM.CategoryHeaders)
+                                                            {
+                                                                <li class="select-option-f mega-menu-item ">
+                                                                    <a href="@Url.Action("ShowProducts","Shopping",item)" class="mega-menu-item-title">@item.Name</a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                }
+                                                
+                                            </div>
+                                            
+
+
+                                            <div class="menu-banner">
+                                                <a href="" class="menu-banner-link">
+                                                    <img class="menu-banner-img" src="~/images/banner/menu-banner.jpg"
+                                                         alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="/Home/Сontacts">Контакты</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        document.getElementById("yourLinkId").onclick = function () {
+            document.getElementById("yourFormId").submit();
+        }
+    </script>
+</header>

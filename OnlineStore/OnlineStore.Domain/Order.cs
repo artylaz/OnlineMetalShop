@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
+        public User User { get; set; } = null!;
         public Guid OrderStatusId { get; set; }
         public OrderStatus OrderStatus { get; set; } = null!;
         public Guid StoreId { get; set; }

@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStore.WebApi", "Onlin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A92A796D-F5EB-4E2D-8369-E5CA736074B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Tests", "OnlineStore.Tests\OnlineStore.Tests.csproj", "{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStore.Tests", "OnlineStore.Tests\OnlineStore.Tests.csproj", "{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.WebMVC", "OnlineStore.WebMVC\OnlineStore.WebMVC.csproj", "{C73F5543-65DB-455B-BB36-F9CF5195A57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C73F5543-65DB-455B-BB36-F9CF5195A57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C73F5543-65DB-455B-BB36-F9CF5195A57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C73F5543-65DB-455B-BB36-F9CF5195A57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C73F5543-65DB-455B-BB36-F9CF5195A57D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{0D1E43C9-63C5-42A6-B9E5-4649BF707F86} = {25B380D3-3F07-4054-BF14-3431C3CADAA3}
 		{EAF3E89F-CCA4-4AE3-92CB-1E700667D504} = {A6EA3920-1F10-427A-B7E0-3CCB5E81E218}
 		{8F518CE6-C5BA-4257-BA9A-91DA1FFDE167} = {A92A796D-F5EB-4E2D-8369-E5CA736074B0}
+		{C73F5543-65DB-455B-BB36-F9CF5195A57D} = {A6EA3920-1F10-427A-B7E0-3CCB5E81E218}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {824CA65B-3D51-46D3-9C77-F5A723E8DEA0}

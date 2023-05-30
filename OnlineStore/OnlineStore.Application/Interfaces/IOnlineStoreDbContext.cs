@@ -5,6 +5,9 @@ namespace OnlineStore.Application.Interfaces
 {
     public interface IOnlineStoreDbContext
     {
+        DbSet<User> Users { get; set; }
+        DbSet<Role> Roles { get; set; }
+        DbSet<Basket> Baskets { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<Product> Products { get; set; }
         DbSet<Picture> Pictures { get; set; }

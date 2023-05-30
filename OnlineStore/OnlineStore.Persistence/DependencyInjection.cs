@@ -12,9 +12,9 @@ namespace OnlineStore.Persistence
         {
             var connectionString = configuration["DbConnection"];
             services.AddDbContext<OnlineStoreDbContext>(options =>
-            {
-                options.UseNpgsql(connectionString);
-            });
+                options.UseNpgsql(connectionString,
+                b => b.MigrationsAssembly(typeof(OnlineStoreDbContext).Assembly.FullName)), ServiceLifetime.Transient);
+
             services.AddScoped<IOnlineStoreDbContext>(provider =>
                 provider.GetService<OnlineStoreDbContext>());
             return services;

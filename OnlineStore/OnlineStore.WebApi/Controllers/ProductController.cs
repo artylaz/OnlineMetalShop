@@ -35,13 +35,13 @@ namespace OnlineStore.WebApi.Controllers
         /// <param name="categotyId">Category id</param>
         /// <returns>Returns ProductListVm</returns>
         /// <response code="200">Success</response>
-        [HttpGet("{categotyId}")]
-        public async Task<ActionResult<ProductListVm>> GetAllByCategory(Guid categotyId)
-        {
-            var query = new GetProductListQuery { CategoryId = categotyId };
-            var vm = await Mediator.Send(query);
-            return Ok(vm);
-        }
+        //[HttpGet("{categotyId}")]
+        //public async Task<ActionResult<ProductListVm>> GetAllByCategory(Guid categotyId)
+        //{
+        //    var query = new GetProductListQuery { CategoryId = categotyId };
+        //    var vm = await Mediator.Send(query);
+        //    return Ok(vm);
+        //}
 
         /// <summary>
         /// Creates the product

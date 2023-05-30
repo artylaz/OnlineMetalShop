@@ -16,5 +16,6 @@ namespace OnlineStore.Domain
         public List<Picture> Pictures { get; set; } = new();
         public List<OrderItem> OrderItems { get; set; } = new();
         public List<Delivery> Deliveries { get; set; } = new();
+        public List<Basket> Baskets { get; set; } = new();
     }
 }

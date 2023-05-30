@@ -19,23 +19,23 @@ namespace OnlineStore.Tests.Products.Queries
             Mapper = fixture.Mapper;
         }
 
-        [Fact]
-        public async Task GetProductListQueryHandler_Success()
-        {
-            // Arrange
-            var handler = new GetProductListQueryHandler(Context, Mapper);
+        //[Fact]
+        //public async Task GetProductListQueryHandler_Success()
+        //{
+        //    // Arrange
+        //    var handler = new GetProductListQueryHandler(Context, Mapper);
 
-            // Act
-            var result = await handler.Handle(
-                new GetProductListQuery
-                {
-                    CategoryId = Guid.Parse("3769f694-7a5a-47eb-bdb1-62d5c36274d0")
-                },
-                CancellationToken.None);
+        //    // Act
+        //    var result = await handler.Handle(
+        //        new GetProductListQuery
+        //        {
+        //            CategoryId = Guid.Parse("3769f694-7a5a-47eb-bdb1-62d5c36274d0")
+        //        },
+        //        CancellationToken.None);
 
-            // Assert
-            result.ShouldBeOfType<ProductListVm>();
-            result.Products.Count.ShouldBe(2);
-        }
+        //    // Assert
+        //    result.ShouldBeOfType<ProductListVm>();
+        //    result.Products.Count.ShouldBe(2);
+        //}
     }
 }

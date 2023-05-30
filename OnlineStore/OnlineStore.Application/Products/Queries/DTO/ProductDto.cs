@@ -10,6 +10,9 @@ namespace OnlineStore.Application.Products.Queries.DTO
         public string Name { get; set; } = null!;
         public decimal Price { get; set; }
         public bool IsHidden { get; set; }
+        public string PathImg { get; set; } = null!;
+        public List<CharacteristicDto> Characteristics { get; set; } = new();
+        public List<PictureDto> Pictures { get; set; } = new();
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Product, ProductDto>()
@@ -20,7 +23,14 @@ namespace OnlineStore.Application.Products.Queries.DTO
                 .ForMember(productDto => productDto.IsHidden,
                     opt => opt.MapFrom(product => product.IsHidden))
                 .ForMember(productDto => productDto.Price,
-                    opt => opt.MapFrom(product => product.PriceChanges.Max(pr=>pr.NewPrice)));
+                    opt => opt.MapFrom(product => product.PriceChanges.Max(pr => pr.NewPrice)))
+                .ForMember(productDto => productDto.Characteristics,
+                    opt => opt.MapFrom(product => product.Characteristics))
+                .ForMember(productDto => productDto.Pictures,
+                    opt => opt.MapFrom(product => product.Pictures))
+                .ForMember(productDto => productDto.PathImg,
+                    opt => opt.MapFrom(product => product.Pictures.First().Path));
+
         }
     }
 }
