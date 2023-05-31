@@ -7,16 +7,17 @@ using OnlineStore.Application.Interfaces;
 
 namespace OnlineStore.Application.Baskets.Queries.ShowBasket
 {
-    public class ShowBasketQueryHandler : IRequestHandler<ShowBasketQuery, List<BasketDto>>
+    public class ShowBasketQueryHandler : IRequestHandler<ShowBasketQuery, ShowBasketVM>
     {
         private readonly IOnlineStoreDbContext dbContext;
         private readonly IMapper mapper;
         public ShowBasketQueryHandler(IOnlineStoreDbContext dbContext,
             IMapper mapper) => (this.dbContext, this.mapper) = (dbContext, mapper);
 
-        public async Task<List<BasketDto>> Handle(ShowBasketQuery request, CancellationToken cancellationToken)
+        public async Task<ShowBasketVM> Handle(ShowBasketQuery request, CancellationToken cancellationToken)
         {
-            var baskets = await dbContext.Baskets
+            var vm = new ShowBasketVM();
+            vm.Baskets = await dbContext.Baskets
                 .Where(b => b.UserId == request.UserId)
                 .Include(b => b.Product)
                 .ThenInclude(p => p.Pictures)
@@ -25,7 +26,7 @@ namespace OnlineStore.Application.Baskets.Queries.ShowBasket
                 .ProjectTo<BasketDto>(mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
-            return baskets;
+            return vm;
         }
     }
 }

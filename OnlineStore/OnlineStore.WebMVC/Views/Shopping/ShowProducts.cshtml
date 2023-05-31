@@ -1,7 +1,10 @@
-﻿@using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts;
+﻿@using OnlineStore.Application.Baskets.Commands.AddToBasket;
+@using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts;
 @using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts.DTO;
 @model ShowProductsVm
-@{int a = 0; }
+@{
+    int a = 0;
+}
 
 
 <form method="get" id="FilFormId" asp-action="ShowProducts" asp-controller="Shopping">
@@ -102,8 +105,8 @@
 
                                     <div class="sort-select-list">
                                         <fieldset>
-                                            <select onchange="selectOnchange()" asp-for="SortOrder"  id="speed">
-                                                <option  value="@SortState.NameAsc">Сортировка по имени: по возрастанию</option>
+                                            <select onchange="selectOnchange()" asp-for="SortOrder" id="speed">
+                                                <option value="@SortState.NameAsc">Сортировка по имени: по возрастанию</option>
                                                 <option value="@SortState.NameDesc">Сортировка по цене: по убыванию</option>
                                                 <option value="@SortState.PriceAsc">Сортировка по цене: от низкой до высокой</option>
                                                 <option value="@SortState.PriceDesc">Сортировка по цене: от высокой до низкой</option>
@@ -112,7 +115,7 @@
                                     </div>
 
                                     @*<div class="page-amount">
-                                        <span>@Model.GetNamPages(Model.PageVM.PageNumber)</span>
+                                    <span>@Model.GetNamPages(Model.PageVM.PageNumber)</span>
                                     </div>*@
 
                                 </div>
@@ -129,15 +132,15 @@
                                                 <div class="row">
                                                     @foreach (var item in Model.Products)
                                                     {
-                                                        <div  class="col-xl-4 col-sm-6 col-12">
+                                                        <div class="col-xl-4 col-sm-6 col-12">
 
 
                                                             <div class="product-default-single border-around">
                                                                 <div class="product-img-warp">
                                                                     <a href="@Url.Action("ShowProduct","Shopping",item.Id)"
-                                                                       class="product-default-img-link">
-                                                                                <img  src="@item.PathImg"
-                                                                             alt="" class="product-default-img img-fluid">
+                                                                   class="product-default-img-link">
+                                                                        <img src="@item.PathImg"
+                                                                         alt="" class="product-default-img img-fluid">
                                                                     </a>
                                                                     <div class="product-action-icon-link">
                                                                         <ul>
@@ -147,7 +150,7 @@
                                                                                 </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="@Url.Action("AddToBasket","Shopping")">
+                                                                                <a href="@Url.Action("AddToBasket","Shopping",new AddToBasketCommand{ProductId =item.Id,AmountProduct =1})">
                                                                                     <i class="icon-shopping-cart"></i>
                                                                                 </a>
                                                                             </li>

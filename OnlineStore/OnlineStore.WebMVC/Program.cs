@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using OnlineStore.Application;
 using OnlineStore.Application.Common.Mappings;
 using OnlineStore.Application.Interfaces;
@@ -14,6 +15,13 @@ builder.Services.AddAutoMapper(conf =>
 });
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                    options.AccessDeniedPath = new PathString("/Account/Login");
+                });
 
 builder.Services.AddControllersWithViews();
 

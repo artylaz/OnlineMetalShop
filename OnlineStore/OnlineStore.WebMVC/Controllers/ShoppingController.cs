@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineStore.Application.Baskets.Commands.AddToBasket;
+using OnlineStore.Application.Baskets.Commands.DeleteBasket;
+using OnlineStore.Application.Baskets.Queries.ShowBasket;
 using OnlineStore.Application.Categories.Queries.GetCategoryHeaderList;
 using OnlineStore.Application.Products.Queries.DTO;
 using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts;
@@ -42,6 +47,39 @@ namespace OnlineStore.WebMVC.Controllers
         {
             var vm = await Mediator.Send(query);
             return View(vm);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> AddToBasket(Guid productId, int amountProduct)
+        {
+            var addToBasket = new AddToBasketCommand
+            {
+                UserId = UserId,
+                ProductId = productId,
+                AmountProduct = amountProduct
+            };
+            var (category, countBasket) = await Mediator.Send(addToBasket);
+
+            ViewData["AmountBasket"] = countBasket;
+
+            return RedirectToAction("ShowProducts", category);
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ShowBasket()
+        {
+            var vm = await Mediator.Send(new ShowBasketQuery { UserId = UserId });
+
+            return View(vm);
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> RemoveBasket(DeleteBasketCommand model)
+        {
+            await Mediator.Send(model);
+
+            return RedirectToAction("ShowBasket");
         }
     }
 }
