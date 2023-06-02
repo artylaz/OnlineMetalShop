@@ -13,7 +13,6 @@ namespace OnlineStore.Persistence.EntityTypeConfigurations
             builder.Property(or => or.UserId).IsRequired();
             builder.Property(or => or.CreationDate).IsRequired();
             builder.HasOne(or => or.OrderStatus).WithMany(pr => pr.Orders).HasForeignKey(d => d.OrderStatusId);
-            builder.HasOne(or => or.Store).WithMany(st => st.Orders).HasForeignKey(d => d.StoreId);
             builder.HasOne(or => or.User).WithMany(st => st.Orders).HasForeignKey(d => d.UserId);
         }
     }

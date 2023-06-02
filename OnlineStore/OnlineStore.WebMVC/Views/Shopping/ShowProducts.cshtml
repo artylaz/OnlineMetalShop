@@ -57,16 +57,16 @@
                                             {
                                                 <li>
                                                     <label class="checkbox-default" for="brakeParts-@i">
-                                                        <input onchange="checkboxOnchange()" name="Characteristics[@i].Id" type="checkbox" value="@Model.Characteristics[i].Id" id="brakeParts-@i">
+                                                        <input onchange="checkboxOnchange()" name="Characteristics[@i].Id" type="checkbox" value="@Model.Characteristics[i].Name" id="brakeParts-@i">
                                                         <span>@Model.Characteristics[i].Name</span>
                                                     </label>
                                                 </li>
                                             }
-                                            else if (@Model.CheckedCharacteristics.Any(c => c.Id == Model.Characteristics[i].Id))
+                                            else if (@Model.CheckedCharacteristics.Any(c => c.Name == Model.Characteristics[i].Name))
                                             {
                                                 <li>
                                                     <label class="checkbox-default" for="brakeParts-@i">
-                                                        <input onchange="checkboxOnchange()" name="Characteristics[@i].Id" checked type="checkbox" value="@Model.Characteristics[i].Id" id="brakeParts-@i">
+                                                        <input onchange="checkboxOnchange()" name="Characteristics[@i].Id" checked type="checkbox" value="@Model.Characteristics[i].Name" id="brakeParts-@i">
                                                         <span>@Model.Characteristics[i].Name</span>
                                                     </label>
                                                 </li>
@@ -76,7 +76,7 @@
                                             {
                                                 <li>
                                                     <label class="checkbox-default" for="brakeParts-@i">
-                                                        <input onchange="checkboxOnchange()" name="product.Characteristics[@i].Id" type="checkbox" value="@Model.Characteristics[i].Id" id="brakeParts-@i">
+                                                        <input onchange="checkboxOnchange()" name="product.Characteristics[@i].Id" type="checkbox" value="@Model.Characteristics[i].Name" id="brakeParts-@i">
                                                         <span>@Model.Characteristics[i].Name</span>
                                                     </label>
                                                 </li>
@@ -180,7 +180,7 @@
                         </div>
 
                         <div id="divLink" class="page-pagination text-center">
-                            <page-link page-model="Model.PageVM"
+                            <page-link page-model="Model.Page"
                                        page-action="ShowProducts"></page-link>
                         </div>
 

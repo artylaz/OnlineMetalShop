@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using OnlineStore.Application.Interfaces;
 using OnlineStore.Application.Products.Queries.DTO;
+using OnlineStore.Application.Products.Queries.DTO.Comparers;
 using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts.DTO;
 
 namespace OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts
@@ -21,6 +20,7 @@ namespace OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts
 
             var characteristics = request.Products
                 .SelectMany(p=> p.Characteristics)
+                .Distinct(new CharacteristicComparer())
                 .ToList();
 
             //Фильтрация
@@ -32,7 +32,8 @@ namespace OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts
                 {
                     productsF
                         .AddRange(request.Products
-                        .Where(p => p.Characteristics.Any(ph => ph.Id == item.Id) == true));
+                        .Where(p => p.Characteristics
+                        .Any(ph => ph.Name == item.Name && ph.Value == item.Value) == true));
                 }
 
             string[] stringArr = new string[6];
@@ -64,9 +65,7 @@ namespace OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts
             showProductsVM.Products = productsF;
             showProductsVM.Category = request.Category;
             showProductsVM.CheckedCharacteristics = request.CheckedCharacteristics;
-            showProductsVM.Characteristics = await dbContext.Characteristics
-                .ProjectTo<CharacteristicDto>(mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+            showProductsVM.Characteristics = characteristics;
             showProductsVM.SortOrder = request.SortOrder;
             showProductsVM.Page = new Page(count, request.Page, pageSize);
             showProductsVM.PriceFilter = stringArr[0] + " P - " + stringArr[3] + " P";

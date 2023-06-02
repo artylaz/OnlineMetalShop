@@ -13,8 +13,6 @@ namespace OnlineStore.Application.Interfaces
         DbSet<Picture> Pictures { get; set; }
         DbSet<Characteristic> Characteristics { get; set; }
         DbSet<PriceChange> PriceChanges { get; set; }
-        DbSet<Store> Stores { get; set; }
-        DbSet<Delivery> Deliveries { get; set; }
         DbSet<OrderStatus> OrderStatuses { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<OrderItem> OrderItems { get; set; }

@@ -57,7 +57,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    @if (User.IsInRole("user"))
+                                    @if (User.IsInRole("Client"))
                                     {
                                         <a href="/User/MyAccount" style="box-sizing: content-box; ">
                                             @User.Claims.Last().Value
@@ -150,8 +150,6 @@
                                                 
                                             </div>
                                             
-
-
                                             <div class="menu-banner">
                                                 <a href="" class="menu-banner-link">
                                                     <img class="menu-banner-img" src="~/images/banner/menu-banner.jpg"

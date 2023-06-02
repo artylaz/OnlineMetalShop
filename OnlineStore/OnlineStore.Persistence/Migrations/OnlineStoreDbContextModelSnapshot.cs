@@ -99,30 +99,6 @@ namespace OnlineStore.Persistence.Migrations
                     b.ToTable("Characteristics");
                 });
 
-            modelBuilder.Entity("OnlineStore.Domain.Delivery", b =>
-                {
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ProductId", "StoreId");
-
-                    b.HasIndex("StoreId");
-
-                    b.HasIndex("ProductId", "StoreId")
-                        .IsUnique();
-
-                    b.ToTable("Deliveries");
-                });
-
             modelBuilder.Entity("OnlineStore.Domain.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -135,9 +111,6 @@ namespace OnlineStore.Persistence.Migrations
                     b.Property<Guid>("OrderStatusId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
@@ -147,8 +120,6 @@ namespace OnlineStore.Persistence.Migrations
                         .IsUnique();
 
                     b.HasIndex("OrderStatusId");
-
-                    b.HasIndex("StoreId");
 
                     b.HasIndex("UserId");
 
@@ -306,33 +277,6 @@ namespace OnlineStore.Persistence.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("OnlineStore.Domain.Store", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<bool>("IsHidden")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("StoreName")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique();
-
-                    b.ToTable("Stores");
-                });
-
             modelBuilder.Entity("OnlineStore.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -422,36 +366,11 @@ namespace OnlineStore.Persistence.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlineStore.Domain.Delivery", b =>
-                {
-                    b.HasOne("OnlineStore.Domain.Product", "Product")
-                        .WithMany("Deliveries")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OnlineStore.Domain.Store", "Store")
-                        .WithMany("Deliveries")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Store");
-                });
-
             modelBuilder.Entity("OnlineStore.Domain.Order", b =>
                 {
                     b.HasOne("OnlineStore.Domain.OrderStatus", "OrderStatus")
                         .WithMany("Orders")
                         .HasForeignKey("OrderStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OnlineStore.Domain.Store", "Store")
-                        .WithMany("Orders")
-                        .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -462,8 +381,6 @@ namespace OnlineStore.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("OrderStatus");
-
-                    b.Navigation("Store");
 
                     b.Navigation("User");
                 });
@@ -554,8 +471,6 @@ namespace OnlineStore.Persistence.Migrations
 
                     b.Navigation("Characteristics");
 
-                    b.Navigation("Deliveries");
-
                     b.Navigation("OrderItems");
 
                     b.Navigation("Pictures");
@@ -566,13 +481,6 @@ namespace OnlineStore.Persistence.Migrations
             modelBuilder.Entity("OnlineStore.Domain.Role", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("OnlineStore.Domain.Store", b =>
-                {
-                    b.Navigation("Deliveries");
-
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("OnlineStore.Domain.User", b =>

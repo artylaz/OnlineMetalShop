@@ -6,7 +6,6 @@ namespace OnlineStore.Application.Products.Queries.DTO
 {
     public class CharacteristicDto : IMapWith<Characteristic>
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string Value { get; set; } = null!;
 

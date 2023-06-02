@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using OnlineStore.Application.Baskets.Commands.AddToBasket;
 using OnlineStore.Application.Baskets.Commands.DeleteBasket;
 using OnlineStore.Application.Baskets.Queries.ShowBasket;
@@ -10,7 +9,6 @@ using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts;
 using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts.DTO;
 using OnlineStore.Application.Products.Queries.GetProductDetails;
 using OnlineStore.Application.Products.Queries.GetProductList;
-using OnlineStore.Domain;
 
 namespace OnlineStore.WebMVC.Controllers
 {
@@ -81,5 +79,7 @@ namespace OnlineStore.WebMVC.Controllers
 
             return RedirectToAction("ShowBasket");
         }
+
+        
     }
 }
