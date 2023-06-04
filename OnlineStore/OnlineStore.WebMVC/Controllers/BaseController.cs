@@ -9,8 +9,18 @@ namespace OnlineStore.WebMVC.Controllers
         private IMediator mediator;
         protected IMediator Mediator =>
             mediator ??= HttpContext.RequestServices.GetService<IMediator>();
-        internal Guid UserId => !User.Identity.IsAuthenticated
-            ? Guid.Empty
-            : Guid.Parse(User.Claims.First().Value);
+        internal Guid UserId
+        {
+            get
+            {
+                if(User == null)
+                    return Guid.Empty;
+
+                return !User.Identity.IsAuthenticated
+                            ? Guid.Empty
+                            : Guid.Parse(User.Claims.First().Value);
+            }
+        }
+
     }
 }

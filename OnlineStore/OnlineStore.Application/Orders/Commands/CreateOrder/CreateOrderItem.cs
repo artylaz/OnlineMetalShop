@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using OnlineStore.Application.Common.Mappings;
+using OnlineStore.Application.Orders.Queries.DTO;
 using OnlineStore.Domain;
 
 namespace OnlineStore.Application.Orders.Commands.CreateOrder
@@ -12,8 +13,8 @@ namespace OnlineStore.Application.Orders.Commands.CreateOrder
 
         public void Mapping(Profile profile)
         {
-            profile.CreateProjection<CreateOrderItem, OrderItem>();
-
+            profile.CreateMap<CreateOrderItem, OrderItem>();
+            profile.CreateMap<OrderItemDto, CreateOrderItem>();
         }
     }
 }

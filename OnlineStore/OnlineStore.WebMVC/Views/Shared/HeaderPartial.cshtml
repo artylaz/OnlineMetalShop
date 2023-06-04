@@ -59,7 +59,7 @@
                                 <li>
                                     @if (User.IsInRole("Client"))
                                     {
-                                        <a href="/User/MyAccount" style="box-sizing: content-box; ">
+                                        <a href="/Client/MyAccount" style="box-sizing: content-box; ">
                                             @User.Claims.Last().Value
                                         </a>
                                     }

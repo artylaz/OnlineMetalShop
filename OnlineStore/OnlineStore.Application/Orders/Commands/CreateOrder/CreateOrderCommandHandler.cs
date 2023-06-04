@@ -28,7 +28,13 @@ namespace OnlineStore.Application.Orders.Commands.CreateOrder
                 OrderItems = mapper.Map<List<OrderItem>>(request.OrderItems)
             };
 
-            await dbContext.Orders.AddAsync(order,cancellationToken);
+            await dbContext.Orders.AddAsync(order, cancellationToken);
+
+            var basketsRemove = await dbContext.Baskets
+                .Where(b => b.UserId == request.UserId)
+                .ToListAsync();
+            dbContext.Baskets.RemoveRange(basketsRemove);
+
             await dbContext.SaveChangesAsync(cancellationToken);
 
             return order.Id;

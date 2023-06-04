@@ -21,16 +21,19 @@ namespace OnlineStore.Application.Baskets.Commands.AddToBasket
                 pb.UserId == request.UserId, cancellationToken);
 
             if (productBasket == null)
+            {
                 productBasket = new Basket
                 {
                     ProductId = request.ProductId,
                     UserId = request.UserId,
                     AmountProduct = request.AmountProduct,
                 };
+                await dbContext.Baskets.AddAsync(productBasket, cancellationToken);
+            }
             else
                 productBasket.AmountProduct += request.AmountProduct;
 
-            await dbContext.Baskets.AddAsync(productBasket, cancellationToken);
+
             await dbContext.SaveChangesAsync(cancellationToken);
 
             var countBasket = await dbContext.Baskets

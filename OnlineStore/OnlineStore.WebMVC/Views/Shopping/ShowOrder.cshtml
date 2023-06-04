@@ -1,0 +1,131 @@
+﻿@using OnlineStore.WebMVC.Models.ShoppingModels;
+@model ShowOrderVm
+
+<div class="breadcrumb-section">
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between justify-content-md-between  align-items-center flex-md-row flex-column">
+                    <h3 class="breadcrumb-title">Заказ</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- ...:::: End Breadcrumb Section:::... -->
+<!-- ...:::: Start Checkout Section:::... -->
+<div class="checkout_section">
+    <div class="container">
+
+        <!-- Start User Details Checkout Form -->
+        <div class="checkout_form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <form action="#">
+                        <h3>Ваши данные</h3>
+                        <div class="row">
+                            <div class="col-lg-6 mb-20">
+                                <div class="default-form-box">
+                                    <label>Фамилия<span>*</span></label>
+                                    <input disabled type="text" asp-for="User.LastName">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <div class="default-form-box">
+                                    <label>Имя<span>*</span></label>
+                                    <input disabled type="text" asp-for="User.FirstName">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <div class="default-form-box">
+                                    <label>Телефон<span>*</span></label>
+                                    <input disabled type="text" asp-for="User.Phone">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-20">
+                                <div class="default-form-box">
+                                    <label>Email<span>*</span></label>
+                                    <input disabled type="text" asp-for="User.Email">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-20">
+                                <div class="default-form-box">
+                                    <label>Город <span>*</span></label>
+                                    <input disabled type="text" value="Екатеринбург">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-20">
+                                <div class="default-form-box">
+                                    <label>Адресс <span>*</span></label>
+                                    <input placeholder="Название улицы и номер дома" type="text">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-20">
+                                <div class="default-form-box">
+                                    <input placeholder="Квартира (по желанию)" type="text">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="order-notes">
+                                    <label for="order_note">Примечания к заказу</label>
+                                    <textarea id="order_note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <form asp-action="CreateOrder" asp-controller="Shopping">
+                        <h3>Ваш заказ</h3>
+                        <div class="order_table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Товар</th>
+                                        <th>Цена</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < @Model.OrderItems.Count; i++)
+                                    {
+                                        <tr>
+                                            <td> @Model.OrderItems[i].Product.Name <strong> × @Model.OrderItems[i].ProductCount</strong></td>
+                                            <td>@Model.OrderItems[i].ProductPrice₽</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Корзина</th>
+                                        <td>@Model.BasketPrice₽</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Доставка</th>
+                                        <td><strong>@Model.ShippingCost₽</strong></td>
+                                    </tr>
+                                    <tr class="order_total">
+                                        <th>Весь заказ</th>
+                                        <td><strong>@Model.OrderPrice₽</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method text-center">
+                            <div class="order_button pt-15 ">
+                                <button type="submit">Оплатить</button>
+                            </div>
+                        </div>
+
+                        @for (int i = 0; i < Model.OrderItems.Count; i++)
+                        {
+                            <input hidden asp-for="OrderItems[i].ProductId" />
+                            <input hidden asp-for="OrderItems[i].ProductCount" />
+                            <input hidden asp-for="OrderItems[i].ProductPrice" />
+                        }
+
+                    </form>
+                </div>
+            </div>
+        </div> <!-- Start User Details Checkout Form -->
+    </div>
+</div><!-- ...:::: End Checkout Section:::... -->

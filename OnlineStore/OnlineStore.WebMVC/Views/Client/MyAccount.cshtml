@@ -1,5 +1,5 @@
 ﻿@using OnlineStore.WebMVC.Models.ClientViewModel;
-@model MyAccountVM
+@model MyAccountVm
 @{
     int i = 1;
 }
@@ -42,7 +42,7 @@
                                             <td>@i</td>
                                             <td>@item.DatePurchase.ToString("D")</td>
                                             <td><span class="success">@item.Product.Name</span></td>
-                                            <td>@Model.GetPrice(item.AmountProduct, item.Product.Price) ₽ за @item.AmountProduct товар </td>
+                                            <td>@item.OrderItemPrice ₽ за @item.AmountProduct товар </td>
                                             <td><a href="@Url.Action("ShowProduct","Shopping",item.Product)" class="view">Перейти</a></td>
                                         </tr>
                                         i++;
@@ -56,7 +56,7 @@
                         <div class="login">
                             <div class="login_form_container">
                                 <div class="account_login_form">
-                                    <form method="get" asp-action="EditAccount" asp-controller="User">
+                                    <form method="get" asp-action="EditAccount" asp-controller="Client">
                                         <div class="default-form-box mb-20">
                                             <span asp-validation-for="User.LastName" class="val"></span>
                                             <label>Фамилия <span>*</span></label>
@@ -88,9 +88,11 @@
                                             <label>Подтвердить пароль <span>*</span></label>
                                             <input type="password" asp-for="@Model.User.PasswordConfirm" name="PasswordConfirm">
                                         </div>
+                                        <input hidden type="text" asp-for="@Model.User.Id" name="Id"/>
                                         <div class="save_button primary_btn default_button">
                                             <button type="submit">Сохранить</button>
                                         </div>
+                                        
                                     </form>
                                 </div>
                             </div>

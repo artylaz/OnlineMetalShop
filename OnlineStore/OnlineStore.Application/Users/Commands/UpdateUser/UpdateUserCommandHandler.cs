@@ -16,7 +16,7 @@ namespace OnlineStore.Application.Users.Commands.UpdateUser
         public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var user = await dbContext.Users
-                .FirstOrDefaultAsync(u=>u.Id == request.Id,cancellationToken);
+                .FirstOrDefaultAsync(u => u.Id == request.Id, cancellationToken);
 
             if (user == null)
                 throw new NotFoundException(nameof(User), request.Id);
@@ -27,7 +27,8 @@ namespace OnlineStore.Application.Users.Commands.UpdateUser
             user.Email = request.Email;
             user.Password = request.Password;
             user.Phone = request.Phone;
-            user.RoleId = request.RoleId;
+            if (request.RoleId != Guid.Empty)
+                user.RoleId = request.RoleId;
 
             await dbContext.SaveChangesAsync(cancellationToken);
         }

@@ -3,6 +3,7 @@ using OnlineStore.Application;
 using OnlineStore.Application.Common.Mappings;
 using OnlineStore.Application.Interfaces;
 using OnlineStore.Persistence;
+using System.Globalization;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,9 +26,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddControllersWithViews();
 
-
-
-
+var enCulture = new CultureInfo("en-US");
+CultureInfo.CurrentCulture = enCulture;
+CultureInfo.CurrentUICulture = enCulture;
+CultureInfo.DefaultThreadCurrentCulture = enCulture;
+CultureInfo.DefaultThreadCurrentUICulture = enCulture;
 
 var app = builder.Build();
 

@@ -1,15 +1,11 @@
-﻿using OnlineStore.WebMVC.Models.ClientViewModel.DTO;
+﻿using OnlineStore.Application.Orders.Queries.GetPurchaseHistory;
+using OnlineStore.Application.Users.Queries.GetUser;
 
 namespace OnlineStore.WebMVC.Models.ClientViewModel
 {
-    public class MyAccountVM
+    public class MyAccountVm
     {
         public List<PurchaseHistoryDto> PurchaseHistories { get; set; }
-        public UserAccountDto User { get; set; }
-
-        public decimal GetPrice(int amountProduct, decimal price)
-        {
-            return price * amountProduct;
-        }
+        public UserVm User { get; set; }
     }
 }

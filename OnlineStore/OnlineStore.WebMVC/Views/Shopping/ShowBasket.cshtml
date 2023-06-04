@@ -2,7 +2,7 @@
 @model ShowBasketVM
 <!-- ...:::: Start Cart Section:::... -->
 <div class="cart-section mt-10">
-    <form method="get" asp-action="BuyProducts" asp-controller="Shopping">
+    <form method="get" asp-action="ShowOrder" asp-controller="Shopping">
         <div class="cart-table-wrapper">
             <div class="container">
                 <div class="row">
@@ -60,7 +60,7 @@
                                     <p class="cart_amount" name="cartPrice">@Model.TotalPrice ₽</p>
                                 </div>
                                 <div class="checkout_btn">
-                                    <button type="submit">Купить</button>
+                                    <button type="submit">Оформить заказ</button>
                                 </div>
                             </div>
                         </div>
@@ -72,6 +72,10 @@
         {
             <input name="Baskets[@i].UserId" value="@Model.Baskets[i].UserId" hidden />
             <input name="Baskets[@i].ProductId" value="@Model.Baskets[i].Product.Id" hidden />
+            <input asp-for="Baskets[i].Product.Id" hidden/>
+            <input asp-for="Baskets[i].Product.Name" hidden />
+            <input asp-for="Baskets[i].Product.PathImg" hidden/>
+            <input asp-for="Baskets[i].Product.Price" hidden />
         }
     </form>
 </div>

@@ -6,13 +6,13 @@ namespace OnlineStore.Application.Baskets.Queries.ShowBasket
     {
         public List<BasketDto> Baskets { get; set; }
 
-        public decimal? TotalPrice
+        public decimal TotalPrice
         {
             get
             {
                 if (Baskets != null)
                 {
-                    decimal? totalPrice = 0;
+                    decimal totalPrice = 0;
                     foreach (var item in Baskets)
                     {
                         if (item.Product != null)
@@ -20,7 +20,7 @@ namespace OnlineStore.Application.Baskets.Queries.ShowBasket
                     }
                     return totalPrice;
                 }
-                return null;
+                return 0;
             }
         }
     }

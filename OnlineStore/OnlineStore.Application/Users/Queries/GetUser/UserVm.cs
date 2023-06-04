@@ -1,9 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AutoMapper;
+using OnlineStore.Application.Common.Mappings;
+using OnlineStore.Domain;
+using System.ComponentModel.DataAnnotations;
 
-namespace OnlineStore.WebMVC.Models.ClientViewModel.DTO
+namespace OnlineStore.Application.Users.Queries.GetUser
 {
-    public class UserAccountDto
+    public class UserVm : IMapWith<User>
     {
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "Не указана фамилия")]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; } = null!;
@@ -25,5 +30,10 @@ namespace OnlineStore.WebMVC.Models.ClientViewModel.DTO
         [Required(ErrorMessage = "Не указан телефон")]
         [Display(Name = "Телефон")]
         public string Phone { get; set; } = null!;
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<User, UserVm>();
+        }
     }
 }
