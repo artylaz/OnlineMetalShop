@@ -1,0 +1,61 @@
+﻿@using OnlineStore.Application.Users.Queries.GetUser;
+@model UserVm
+@{
+    Layout = "_LayoutManager";
+}
+
+<div class="tab-pane fade show active mx-auto col-md-8" id="account-details">
+    <h3>Данные учетной записи</h3>
+    <div class="login">
+        <div class="login_form_container">
+            <div class="account_login_form">
+                <form method="get" asp-action="EditAccount" asp-controller="SiteManager">
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="LastName" class="val"></span>
+                        <label>Фамилия <span>*</span></label>
+                        <input type="text" asp-for="LastName" name="LastName" placeholder="Фамилия" autofocus="">
+                    </div>
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="FirstName" class="val"></span>
+                        <label>Имя <span>*</span></label>
+                        <input type="text" asp-for="FirstName" name="FirstName" placeholder="Имя">
+                    </div>
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="Email" class="val"></span>
+                        <label>Email <span>*</span></label>
+                        <input type="email" asp-for="Email" name="Email" placeholder="Email">
+
+                    </div>
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="Phone" class="val"></span>
+                        <label>Телефон <span>*</span></label>
+                        <input type="tel" asp-for="Phone" name="Phone" placeholder="+71112223344">
+                    </div>
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="Password" class="val"></span>
+                        <label>Пароль <span>*</span></label>
+                        <input type="password" asp-for="Password" name="Password">
+                    </div>
+                    <div class="default-form-box mb-20">
+                        <span asp-validation-for="@Model.PasswordConfirm" class="val"></span>
+                        <label>Подтвердить пароль <span>*</span></label>
+                        <input type="password" asp-for="@Model"PasswordConfirm" name="PasswordConfirm">
+                    </div>
+                    <input hidden type="text" asp-for="Id" name="Id" />
+                    <div class="save_button primary_btn default_button">
+                        <button type="submit">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let ulActiveAs = document.getElementById("ulActive").getElementsByTagName("a");
+
+    for (var item of ulActiveAs) {
+        if (item.id == 'account-detailsId') {
+            item.classList.add("active");
+        }
+    }
+</script>

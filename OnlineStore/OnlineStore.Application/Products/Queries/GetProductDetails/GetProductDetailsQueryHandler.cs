@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using OnlineStore.Application.Characteristics.DTO;
 using OnlineStore.Application.Common.Exceptions;
 using OnlineStore.Application.Interfaces;
 using OnlineStore.Application.Products.Queries.DTO;

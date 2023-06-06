@@ -10,6 +10,8 @@ namespace OnlineStore.WebMVC.Controllers
 {
     public class ClientController : BaseController
     {
+        #region MyAccount
+        
         public async Task<IActionResult> MyAccount()
         {
             ViewData["AmountBasket"] = await Mediator.Send(new GetBasketCountQuery { UserId = UserId });
@@ -47,5 +49,6 @@ namespace OnlineStore.WebMVC.Controllers
 
             return RedirectToAction("MyAccount");
         }
+        #endregion
     }
 }

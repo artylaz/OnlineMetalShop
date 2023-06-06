@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using OnlineStore.Application.Characteristics.DTO;
+using System.Diagnostics.CodeAnalysis;
 
 namespace OnlineStore.Application.Products.Queries.DTO.Comparers
 {

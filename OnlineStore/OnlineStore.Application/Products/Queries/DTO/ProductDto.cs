@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OnlineStore.Application.Characteristics.DTO;
 using OnlineStore.Application.Common.Mappings;
 using OnlineStore.Domain;
 
@@ -8,8 +9,10 @@ namespace OnlineStore.Application.Products.Queries.DTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
-        public decimal Price { get; set; }
+        public string Description { get; set; } = null!;
         public bool IsHidden { get; set; }
+        public decimal Price { get; set; }
+        public Guid CategoryId { get; set; }
         public string PathImg { get; set; } = null!;
         public List<CharacteristicDto> Characteristics { get; set; } = new();
         public List<PictureDto> Pictures { get; set; } = new();
@@ -29,7 +32,13 @@ namespace OnlineStore.Application.Products.Queries.DTO
                 .ForMember(productDto => productDto.Pictures,
                     opt => opt.MapFrom(product => product.Pictures))
                 .ForMember(productDto => productDto.PathImg,
-                    opt => opt.MapFrom(product => product.Pictures.First().Path));
+                    opt => opt.MapFrom(product => product.Pictures.First().Path))
+                .ForMember(productDto => productDto.Description,
+                    opt => opt.MapFrom(product => product.Description))
+                .ForMember(productDto => productDto.IsHidden,
+                    opt => opt.MapFrom(product => product.IsHidden))
+                .ForMember(productDto => productDto.CategoryId,
+                    opt => opt.MapFrom(product => product.CategoryId));
 
         }
     }

@@ -41,8 +41,17 @@
                                 </div>
                             }
                         </div>
+                        <div class="product-image-thumb product-image-thumb-horizontal pos-relative">
+                            @foreach (var item in Model.Pictures)
+                            {
+                                <div class="zoom-active product-image-thumb-single">
+                                    <img class="img-fluid" src="@item.Path" alt="">
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="product-details-content-area">
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OnlineStore.Application.Characteristics.DTO;
 using OnlineStore.Application.Common.Mappings;
 using OnlineStore.Application.Products.Queries.DTO;
 using OnlineStore.Domain;

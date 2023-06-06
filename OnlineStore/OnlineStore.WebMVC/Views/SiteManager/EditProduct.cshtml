@@ -1,0 +1,144 @@
+﻿@using OnlineStore.WebMVC.Models.SiteManagerViewModels;
+@model EditProductVm
+@{
+    Layout = "_LayoutManager";
+    int prI = 1;
+    int prA = 0;
+
+}
+
+<div class="tab-pane fade show active" id="products">
+    <h4>Товары</h4>
+
+    <div class="table_page">
+        <form asp-action="UpdateProduct" asp-controller="SiteManager">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Рейтинг</th>
+                        <th>Категория</th>
+                        <th>Статус</th>
+                        <th>Описание</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" autocomplete="off" required class="table-input-text input-selected" name="Name">
+                        </td>
+                        <td><input type="number" autocomplete="off" required class="table-input-text" name="Price"></td>
+                        <td><input type="number" autocomplete="off" required class="table-input-text" name="Rating"></td>
+                        <td>
+                            <select required class="select-f" readonly name="CategoryId">
+                                @foreach (var category in Model.ProductCategories)
+                                {
+                                    <option class="select-option-f" value="@category.Id">@category.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <select required class="select-f" readonly name="OnSale">
+
+                                <option class="select-option-f" value="true">Виден</option>
+                                <option class="select-option-f" value="false">Скрыт</option>
+
+                            </select>
+                        </td>
+                        <td><input type="text" autocomplete="off" class="table-input-text" name="Description"></td>
+                        
+                        <td>
+                            <input class="btn-tb" id="addInput" type="submit" value="Добавить" />
+                        </td>
+                    </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="tab-pane fade show active mt-10">
+        <form asp-action="EditProduct" asp-controller="SiteManager" >
+            <h3>Вывести товары по категории</h3>
+            <div class="">
+                <select required class="mr-5" readonly name="CategoryId">
+                    @foreach (var category in Model.ProductCategories)
+                    {
+                        <option class="select-option-f" value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <input class="btn-tb" type="submit" value="Показать" style="width:fit-content" />
+            </div>
+        </form>
+    </div>
+    @if (Model.Products != null)
+    {
+        <div class="table_page " style="overflow-x: auto;height: 800px;">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Категория</th>
+                        <th>Статус</th>
+                        <th>Описание</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <form asp-action="UpdateProduct" asp-controller="SiteManager">
+                        <tr id="trId-@prA">
+                            <td>@prI</td>
+                            <td>
+                                <input hidden name="Id" value="@item.Id" />
+                                <input type="text" autocomplete="off" required readonly class="table-input-text" name="Name" value="@item.Name">
+                            </td>
+                            <td><input type="text" autocomplete="off" required readonly class="table-input-text" name="Price" value="@item.Price"></td>
+
+                            <td>
+                                <select required disabled class="select-f" name="CategoryId" asp-for="Products[prA].CategoryId">
+                                        @foreach (var category in Model.ProductCategories)
+                                        {
+                                        <option class="" value="@category.Id">@category.Name</option>
+                                        }
+                                </select>
+                            </td>
+                            <td>
+                                <select required disabled class="select-f" readonly name="OnSale" asp-for="Products[prA].IsHidden">
+
+                                    <option class="select-option-f" value="@bool.TrueString">Виден</option>
+                                    <option class="select-option-f" value="@bool.FalseString">Скрыт</option>
+
+                                </select>
+                            </td>
+                            <td><input type="text" autocomplete="off" readonly class="table-input-text" name="Description" value="@item.Description"></td>
+                            
+                            <td>
+                                <input class="btn-tb" type="button" name="edit" onclick="Edit(this)" value="Редактировать" />
+                                <input class="btn-tb" name="save" type="submit" onclick="Save(this)" style="display: none" value="Сохранить" />
+                            </td>
+                        </tr>
+                        </form>
+                        prI++;
+                        prA++;
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    }
+</div>
+<script>
+    let ulActiveAs = document.getElementById("ulActive").getElementsByTagName("a");
+
+    for (var item of ulActiveAs) {
+        if (item.id == 'productsId') {
+            item.classList.add("active");
+        }
+    }
+
+</script>

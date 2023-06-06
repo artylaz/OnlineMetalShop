@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using OnlineStore.Application.Categories.Queries.GetCategoryHeaderList;
+using OnlineStore.Application.Characteristics.DTO;
 using OnlineStore.Application.Products.Queries.DTO;
 using OnlineStore.Application.Products.Queries.FilterSortPaginOfProducts.DTO;
 
